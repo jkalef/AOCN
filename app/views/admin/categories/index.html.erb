@@ -1,0 +1,9 @@
+<div class="container centered">
+  <h1>Viewing All Categories</h1>
+  <% @categories.each do |cat| %>
+    <%= link_to cat.name, edit_admin_category_path(cat.id) %>
+    <br>
+    <hr>
+  <% end %>
+  <%= link_to "Create New Category", new_admin_category_path, class: "btn btn-success" %>
+</div>

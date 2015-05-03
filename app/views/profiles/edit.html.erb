@@ -1,0 +1,27 @@
+<div class="main-wrapper centered">
+  <div class="col-sm-12 col-xs-12 col-md-6 col-md-offset-3">
+    <h1>Please Edit Your Profile</h1>
+    <br>
+    <div class="form-group">
+      <%= simple_form_for @profile do |f| %>
+        <%# change fields to proper sizes for what they are entering %>
+        <%= f.select(:age, @age_range, {}, {class: "input-lg"}) %>
+        <br>
+        <br>
+        <%= f.select(:sex, @sex, {}, {class: "input-lg"}) %>
+        <br>
+        <br>
+        <%# f.text_field :username, placeholder: "Desired Username", class: "input-lg" %>
+        <br>
+        <br>
+        <%= f.text_field :location, placeholder: "Where are you from?", class: "input-lg" %>
+        <br>
+        <br>
+        <%# add in dating enabled function and username %>
+        <%= f.submit "Update Profile", class: "btn btn-success btn-lg" %>
+      <% end %>
+      <br>
+      <%= link_to "I don't care about my profile...I just want to play!!", play_path %>
+    </div>
+  </div>
+</div>

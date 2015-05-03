@@ -1,0 +1,2 @@
+module RandomCompareHelper
+end

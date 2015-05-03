@@ -1,0 +1,43 @@
+<script id="images-display-one" type="x-tmpl-mustache">
+  <div class="image image-one">
+    <img class="compare-image image-one" data-id="{{id}}" src="{{picture}}" alt="{{title}}" />
+  </div>
+</script>
+
+<script id="images-display-two" type="x-tmpl-mustache">
+  <div class="image image-two">
+    <img class="compare-image image-two" data-id="{{id}}" src="{{picture}}" alt="{{title}}" />
+  </div>
+</script>
+
+
+<div class="main-wrapper centered">
+  <div class="col-sm-12 col-xs-12 col-md-6 col-md-offset-3">
+    <h1>Please Select A Category:</h1>
+      <%# Play Category Compare (select category dropmenu) %>
+      <div class="dropdown play-menu">
+          <button type="button" class="btn btn-default dropdown-toggle button-full btn-lg" data-toggle="dropdown">   
+            Select A Category
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dLabel">
+            <% @categories.each do |cat| %>
+            <li>
+               <%= link_to cat.name, play_compare_path(category_id: cat.id), class: "play-button", data: {extension: "category_id=#{cat.id}"} %>
+            </li>
+            <% end %>
+          </ul>
+      </div>
+      <%# Play Random Category %>
+      <div class="play-menu">
+        <%= link_to "Random", play_compare_path(random: true), class: "btn btn-primary btn-lg play-button", data: {extension: "random=true"} %>
+      </div>
+      <%# Play Chuck Norris %>
+      <div class="play-menu">
+        <%= link_to "Chuck Norris", play_compare_path(chuck_norris: true), class: "btn btn-danger btn-lg play-button", data: {extension: "chuck_norris=true"} %>
+      </div>
+  </div>
+</div>
+
+<div class="container centered" id="images-to-compare"></div>
+
