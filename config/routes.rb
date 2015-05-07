@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   #root "welcome#index"
 
   #--For Gameplay------------------------------------
+  #for the phone app
   get "/play/categories"                         => "play#get_categories"
+  get "/:username"                               => "users#show_phone" 
 
   get "/play"                                    => "play#index",  as: :play
   get "/play/show"                               => "play#show",   as: :play_compare
