@@ -8,6 +8,11 @@ class PlayController < ApplicationController
   def show
     game_play
   end
+
+  def get_categories
+    @categories = Category.all
+    render json: {categories: @categories}
+  end
   
 
   def create
@@ -18,7 +23,7 @@ class PlayController < ApplicationController
     chosen_item = Item.find_by_id(chosen_item_id) 
     unchosen_item = Item.find_by_id(unchosen_item_id)
   
-    comparison = current_user.compares.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
+    comparison = Compare.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
     comparison.save
   
     #same category gameplay
@@ -61,6 +66,8 @@ class PlayController < ApplicationController
     @item_2 = category_2.items.sample
 
     render json: { item_1: @item_1, item_2: @item_2 }
+
+    # Item.where(category_id: 8).order("RANDOM()").first
   end
 
 end

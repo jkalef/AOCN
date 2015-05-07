@@ -21,6 +21,16 @@ module Aocn
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    # this will allow the app to accept AJAX requests
+    # from any other website with Http verbs: :get, :post, :options
+    # config.middleware.insert_before 0, "Rack::Cors" do
+    #   allow do
+    #     origins '*'
+    #     resource '*', :headers => :any, :methods => [:get, :post, :options]
+    #   end
+    # end
+
+
     config.active_record.raise_in_transactional_callbacks = true
   end
 end

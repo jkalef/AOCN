@@ -1,0 +1,2 @@
+module OmniauthCallbacks::FacebookHelper
+end

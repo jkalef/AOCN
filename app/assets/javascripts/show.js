@@ -26,6 +26,7 @@ $(document).ready(function() {
     });
 
       $('.container').on('click', '.compare-image.image-one', function() {
+        console.log(this);
         var item_1 = $(this).data("id");
         var item_2 = $(".compare-image.image-two").data("id");
         var extension = $('#images-to-compare').data("url-extension");
@@ -59,6 +60,7 @@ $(document).ready(function() {
             });
           }
         });
+        return false;
       });
 
       $('.container').on('click', '.compare-image.image-two', function() {
@@ -94,6 +96,7 @@ $(document).ready(function() {
             });
           }
         });
+        return false;
       });
 
 });
