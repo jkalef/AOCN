@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #@user.profile = Profile.create
       session[:user_id] = @user.id
       redirect_to edit_profile_path(@user.profile), notice: "Signed Up Successfully.  Welcome to AOCN"
     else
@@ -19,29 +18,17 @@ class UsersController < ApplicationController
     end
   end
 
-
   #to update and edit your user info (password mainly)
   def edit
   end
 
-
   def update
   end
 
-  #going to use this specifically for the Phone API
   def show
-    @user = User.find params[:id]
-    render json: {user: @user}
   end
-
-  def show_phone
-    @user = User.where(username: params[:username])
-    render json: {user: @user}
-  end
-
 
   private
-
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)

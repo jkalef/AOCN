@@ -18,11 +18,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-
-  def show
-  end
-
-
   private
 
   def profile_params

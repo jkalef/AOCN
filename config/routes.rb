@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
 
+  #--For Phone API ---------------------------------
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:create, :update]
+      get "/profiles/:api_key"                       => "profiles#edit"
+
+      get "/play/categories"                         => "play#get_categories"
+      get "/play"                                    => "play#index" 
+      get "/play/show"                               => "play#show"  
+      post "/play/show/:extension/:item_1/:item_2/"  => "play#create"
+    end
+  end
+
   #--For Admins and Viewing Stats ------------------
   namespace :admin do
     resources :stats, only: [:index]
@@ -17,18 +30,10 @@ Rails.application.routes.draw do
 
   root "sessions#new"
 
-  # resources :omniauth_callbacks do
-  #   resources :facebook, only: :index
-  # end
-
   #maybe add a nice welcome page!
   #root "welcome#index"
 
   #--For Gameplay------------------------------------
-  #for the phone app
-  get "/play/categories"                         => "play#get_categories"
-  get "/:username"                               => "users#show_phone" 
-
   get "/play"                                    => "play#index",  as: :play
   get "/play/show"                               => "play#show",   as: :play_compare
   post "/play/show/:extension/:item_1/:item_2/"  => "play#create", as: :create_comparison
