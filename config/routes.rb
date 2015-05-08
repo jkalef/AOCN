@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create, :update]
+      resources :sessions, only: [:create]
+      
       post "/profiles/:api_key"                              => "profiles#update"
+
       get "/play/categories"                                 => "play#get_categories"
       get "/play/show"                                       => "play#show"  
       post "/play/show/:extension/:item_1/:item_2/:api_key"  => "play#create"
