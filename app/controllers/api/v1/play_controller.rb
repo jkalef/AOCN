@@ -16,8 +16,11 @@ class Api::V1::PlayController < Api::V1::BaseController
 
     chosen_item = Item.find_by_id(chosen_item_id) 
     unchosen_item = Item.find_by_id(unchosen_item_id)
+
+
+    current_user = User.where(api_key: params[:api_key])[0]
   
-    comparison = Compare.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
+    comparison = current_user.compares.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
     comparison.save
   
     #same category gameplay

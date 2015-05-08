@@ -16,7 +16,7 @@ class PlayController < ApplicationController
     chosen_item = Item.find_by_id(chosen_item_id) 
     unchosen_item = Item.find_by_id(unchosen_item_id)
   
-    comparison = Compare.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
+    comparison = current_user.compares.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
     comparison.save
   
     #same category gameplay
