@@ -4,12 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create, :update]
-      get "/profiles/:api_key"                       => "profiles#edit"
-
-      get "/play/categories"                         => "play#get_categories"
-      get "/play"                                    => "play#index" 
-      get "/play/show"                               => "play#show"  
-      post "/play/show/:extension/:item_1/:item_2/"  => "play#create"
+      post "/profiles/:api_key"                              => "profiles#update"
+      get "/play/categories"                                 => "play#get_categories"
+      get "/play/show"                                       => "play#show"  
+      post "/play/show/:extension/:item_1/:item_2/:api_key"  => "play#create"
     end
   end
 
