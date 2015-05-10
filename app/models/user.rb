@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
   has_many :compares, dependent: :destroy
   has_many :items_compared, through: :compares, source: :item
 
-  # has_many :chosen_items, through: :compares, source: :item
-  # has_many :unchosen_items, through: :compares, source: :item
+  # has_many :chosen_items, dependent: :destroy, 
+  #             class_name: 'Compare', foreign_key: :chosen_item_id
+  # # has_many :unchosen_items, dependent: :destroy,
+  #             class_name: 'Compare', foreign_key: :unchosen_item_id
 
   has_many :likes, dependent: :destroy
   has_many :liked_items, through: :likes, source: :item
@@ -15,7 +17,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, 
                               :on => :create
-
 
   before_create :generate_api_key
   before_create :create_profile

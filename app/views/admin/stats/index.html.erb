@@ -1,7 +1,24 @@
-<h1>Viewing Statistics</h1>
+<div class="container centered">
+  <h1>Viewing Statistics</h1>
 
-<h2>Most Compared Items</h2>
+  <h2>Filter Statistics</h2>
 
-<%= @most_chosen_items %>
+  <button class="btn btn-primary btn-lg" id="filter-button" data-id="bottom_dogs">Lowest Scoring Items</button>
+  <br>
+
+  <div class="bar-chart-container">
+    <canvas id="barChart" width="800" height="300"></canvas>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="pie-chart-container">
+    <canvas id="pieChart" width="500" height="500"></canvas>
+  </div>
+
+</div>
+
 
 
