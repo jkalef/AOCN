@@ -7,4 +7,13 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def self.find_specific_users
+    specific_users = []
+    profiles = Profile.where(sex: "male")
+    profiles.each do |profile|
+      specific_users << profile.user.id
+    end
+    specific_users
+  end
+
 end

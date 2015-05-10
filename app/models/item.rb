@@ -13,7 +13,7 @@ class Item < ActiveRecord::Base
   has_many :users_who_liked, through: :likes, source: :user
 
   #validates :picture, presence: true
-  # validates :title, presence: true
+  #validates :title, presence: true
 
   def calculate_win_percentage
     ActiveRecord::Base.transaction do
@@ -51,6 +51,60 @@ class Item < ActiveRecord::Base
     order(lose_percentage: "DESC").limit(5)
   end
 
+  #-----------------------------------------------
+  # SPECIFIC SEARCH FILTER METHODS ---------------
+  #-----------------------------------------------
 
+
+  # def calculate_specific_win_percentages
+  #   ActiveRecord::Base.transaction do
+
+  #   end
+  # end
+
+  # def find_specific_users
+  #   specific_users = []
+  #   profiles = Profile.where(sex: "male")
+  #   profiles.each do |profile|
+  #     @specific_users << profile.user.id
+  #   end
+  #   specific_users
+  # # end
+
+
+  def self.crazy_query
+    #Profile.find_specific_users
+    myObject = []
+    Item.all.each do |item|
+      wins = 0
+      loses = 0
+      
+      specific_users = []
+      profiles = Profile.where(sex: "male")
+        profiles.each do |profile|
+        specific_users << profile.user.id
+      end
+      specific_users
+
+      specific_users.each do |id|
+        wins += item.chosen_compares.where(user_id: id).count
+        loses += item.unchosen_compares.where(user_id: id).count
+      end
+      puts "****************"
+      
+      total = wins + loses
+      h = Hash.new
+      h["id"] = item.id
+      h["title"] = item.title
+      h["total_compares"] = wins + loses
+      h["win_percentage"] = wins.to_f / total.to_f
+      h["lose_percentage"] = loses.to_f / total.to_f
+      h["wins"] = wins
+      h["loses"] = loses
+
+      myObject << h
+    end
+    return myObject.sort_by { |x| x[:wins] }
+  end
 
 end
