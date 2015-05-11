@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   #--For Admins and Viewing Stats ------------------
   namespace :admin do
-    resources :stats, only: [:index, :show]
+    resources :stats, only: [:index, :show, :create]
     resources :categories
     resources :items, only: [:destroy]
   end

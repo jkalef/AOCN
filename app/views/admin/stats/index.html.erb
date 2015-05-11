@@ -1,23 +1,128 @@
+<script>
+  $(document).ready(function(){ 
+    var url = "http://localhost:3000/admin/stats";
+    $('.third-filter-button').on('click', function(e) {
+      e.preventDefault();
+      var gender = $('#_gender option:selected').html();
+      var age_1 = $('#_age_1 option:selected').html();
+      var age_2 = $('#_age_2 option:selected').html();
+      var location = $('#_location option:selected').html();
+      $.ajax({
+        method: "post",
+        data: { gender: gender, age_1: age_1, age_2: age_2, location: location },
+        url: url,
+        dataType: "json",
+        error: function() {
+          console.log("sorry...something went wrong");
+        },
+        success: function(response) {
+          $('#barChart').remove();
+          $('.bar-chart-container').append('<canvas id="barChart" width="800" height="300"></canvas>');
+          var barChart = document.getElementById('barChart').getContext('2d');
+          var objectToUse = response.filtered_query;
+          var updateLabels = [];
+          var updateData = [];
+          for (var i = 0; i < objectToUse.length; i+=1) {
+            updateData.push(objectToUse[i].win_percentage * 100);
+            updateLabels.push(objectToUse[i].title);
+          }
+          var data = {};
+          data = {
+          labels: updateLabels,
+          datasets: [
+              {
+                label: "Top Winners Overall",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data: updateData
+              }
+            ]
+          };
+
+          var options = {
+            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+            scaleBeginAtZero : true,
+
+            //Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines : true,
+
+            //String - Colour of the grid lines
+            scaleGridLineColor : "rgba(0,0,0,.05)",
+
+            //Number - Width of the grid lines
+            scaleGridLineWidth : 1,
+
+            //Boolean - Whether to show horizontal lines (except X axis)
+            scaleShowHorizontalLines: true,
+
+            //Boolean - Whether to show vertical lines (except Y axis)
+            scaleShowVerticalLines: true,
+
+            //Boolean - If there is a stroke on each bar
+            barShowStroke : true,
+
+            //Number - Pixel width of the bar stroke
+            barStrokeWidth : 2,
+
+            //Number - Spacing between each of the X value sets
+            barValueSpacing : 5,
+
+            //Number - Spacing between data sets within X values
+            barDatasetSpacing : 2,
+          };
+        
+          barChart = new Chart(barChart).Bar(data, options);
+
+        }
+
+      });
+    });
+  });
+
+</script>
+
 <div class="container centered">
-  <h1>Viewing Statistics</h1>
+  <div class="col-md-3">
+        <h2>Filter Statistics</h2>
+        <button class="btn btn-primary btn-lg" id="filter-button" data-id="bottom_dogs">Lowest Scoring Items Overall</button>
+        <br>
+        <hr>
+        <h3>Filter Options</h3>
 
-  <h2>Filter Statistics</h2>
-
-  <button class="btn btn-primary btn-lg" id="filter-button" data-id="bottom_dogs">Lowest Scoring Items</button>
-  <br>
-
-  <div class="bar-chart-container">
-    <canvas id="barChart" width="800" height="300"></canvas>
+        <div class="filter-form">
+          <%= simple_form_for "", method: :post do |f| %>
+          <%# change fields to proper sizes for what they are entering %>
+            Age:
+            <%= f.select(:age_1, @age_range, {}, {class: "input-lg"}) %>
+            <%= f.select(:age_2, @age_range, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+            Gender:
+            <%= f.select(:gender, @sex, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+            City:
+            <%= f.select(:location, @locations, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+          <%= f.submit "Filter Data", class: "btn btn-success btn-lg third-filter-button" %>
+        <% end %>
+        </div>
   </div>
-
-  <br>
-  <br>
-  <br>
-
-  <div class="pie-chart-container">
-    <canvas id="pieChart" width="500" height="500"></canvas>
+  <div class="col-md-9 centered">
+    <h1>Viewing Statistics</h1>
+    <div class="bar-chart-container">
+      <canvas id="barChart" width="800" height="300"></canvas>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="pie-chart-container">
+      <canvas id="pieChart" width="500" height="500"></canvas>
+    </div>
   </div>
-
 </div>
 
 

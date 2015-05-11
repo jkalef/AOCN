@@ -52,35 +52,17 @@ class Item < ActiveRecord::Base
   end
 
   #-----------------------------------------------
-  # SPECIFIC SEARCH FILTER METHODS ---------------
+  # SPECIFIC SEARCH FILTER METHOD ----------------
   #-----------------------------------------------
 
-
-  # def calculate_specific_win_percentages
-  #   ActiveRecord::Base.transaction do
-
-  #   end
-  # end
-
-  # def find_specific_users
-  #   specific_users = []
-  #   profiles = Profile.where(sex: "male")
-  #   profiles.each do |profile|
-  #     @specific_users << profile.user.id
-  #   end
-  #   specific_users
-  # # end
-
-
-  def self.crazy_query
-    #Profile.find_specific_users
+  def self.crazy_query(gender, age_1, age_2, location)
     myObject = []
     Item.all.each do |item|
       wins = 0
       loses = 0
-      
       specific_users = []
-      profiles = Profile.where(sex: "male")
+      profiles = Profile.where("sex = ? and age > ? and age < ? and location = ?", 
+                                      "#{gender}", "#{age_1}", "#{age_2}", "#{location}")
         profiles.each do |profile|
         specific_users << profile.user.id
       end
@@ -102,9 +84,19 @@ class Item < ActiveRecord::Base
       h["wins"] = wins
       h["loses"] = loses
 
-      myObject << h
+      if h["total_compares"] != 0 
+        myObject << h
+      end 
     end
-    return myObject.sort_by { |x| x[:wins] }
+    myObject
+    sortedObject = myObject.sort_by { |x| x['win_percentage'] }.reverse
+
+    if sortedObject.length <= 5
+      return sortedObject
+    else
+      return sortedObject[0..4]
+    end
+
   end
 
 end
