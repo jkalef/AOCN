@@ -55,7 +55,7 @@ class Item < ActiveRecord::Base
   # SPECIFIC SEARCH FILTER METHOD ----------------
   #-----------------------------------------------
 
-  def self.crazy_query(gender, age_1, age_2, location)
+  def self.crazy_query(gender, age_1, age_2, location, win_or_lose, record_count)
     myObject = []
     Item.all.each do |item|
       wins = 0
@@ -72,7 +72,6 @@ class Item < ActiveRecord::Base
         wins += item.chosen_compares.where(user_id: id).count
         loses += item.unchosen_compares.where(user_id: id).count
       end
-      puts "****************"
       
       total = wins + loses
       h = Hash.new
@@ -89,12 +88,19 @@ class Item < ActiveRecord::Base
       end 
     end
     myObject
-    sortedObject = myObject.sort_by { |x| x['win_percentage'] }.reverse
 
+    if win_or_lose == "win"
+      sortedObject = myObject.sort_by { |x| x['win_percentage'] }.reverse
+    elsif win_or_lose == "lose"
+      sortedObject = myObject.sort_by { |x| x['lose_percentage'] }.reverse
+    end
+
+    #convert the record count to an integer so it can be used in the range
+    n = record_count.to_i
     if sortedObject.length <= 5
       return sortedObject
     else
-      return sortedObject[0..4]
+      return sortedObject[0..n]
     end
 
   end

@@ -7,9 +7,16 @@
       var age_1 = $('#_age_1 option:selected').html();
       var age_2 = $('#_age_2 option:selected').html();
       var location = $('#_location option:selected').html();
+      var win_or_lose = $('#_win_or_lose option:selected').html();
+      var record_count = $('#_record_count option:selected').html();
       $.ajax({
         method: "post",
-        data: { gender: gender, age_1: age_1, age_2: age_2, location: location },
+        data: { gender: gender, 
+                age_1: age_1, 
+                age_2: age_2, 
+                location: location,
+                win_or_lose: win_or_lose,
+                record_count: record_count },
         url: url,
         dataType: "json",
         error: function() {
@@ -23,7 +30,11 @@
           var updateLabels = [];
           var updateData = [];
           for (var i = 0; i < objectToUse.length; i+=1) {
-            updateData.push(objectToUse[i].win_percentage * 100);
+            if (win_or_lose == "win") {
+              updateData.push(objectToUse[i].win_percentage * 100);
+            } else if (win_or_lose == "lose") {
+              updateData.push(objectToUse[i].lose_percentage * 100);
+            }
             updateLabels.push(objectToUse[i].title);
           }
           var data = {};
@@ -105,6 +116,14 @@
             <br>
             City:
             <%= f.select(:location, @locations, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+            Number of Records:
+            <%= f.select(:record_count, @record_count, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+            Winning or Losing Records:
+            <%= f.select(:win_or_lose, @win_or_lose_records, {}, {class: "input-lg"}) %>
             <br>
             <br>
           <%= f.submit "Filter Data", class: "btn btn-success btn-lg third-filter-button" %>
