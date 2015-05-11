@@ -4,7 +4,8 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find params[:id]
     @age_range = Profile.age_range
-    @sex = ["male", "female"]
+    @sex = Profile.gender_select
+    @locations = Profile.location_range
   end
 
 

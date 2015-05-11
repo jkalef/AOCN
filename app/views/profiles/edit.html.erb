@@ -11,10 +11,7 @@
         <%= f.select(:sex, @sex, {}, {class: "input-lg"}) %>
         <br>
         <br>
-        <%# f.text_field :username, placeholder: "Desired Username", class: "input-lg" %>
-        <br>
-        <br>
-        <%= f.text_field :location, placeholder: "Where are you from?", class: "input-lg" %>
+        <%= f.select(:location, @locations, {}, {class: "input-lg"}) %>
         <br>
         <br>
         <%# add in dating enabled function and username %>

@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     $(".play-button").on("click", function(){
       var extension = $(this).data("extension");
       $('#images-to-compare').data("url-extension", extension);
@@ -26,6 +27,7 @@ $(document).ready(function() {
     });
 
       $('.container').on('click', '.compare-image.image-one', function() {
+        $('.loading-modal').fadeIn();
         console.log(this);
         var item_1 = $(this).data("id");
         var item_2 = $(".compare-image.image-two").data("id");
@@ -57,6 +59,9 @@ $(document).ready(function() {
                 $("#images-to-compare").append(html_item_2);
                 console.log("success");
               },
+              complete: function() {
+                $('.loading-modal').fadeOut();
+              }
             });
           }
         });
@@ -64,6 +69,7 @@ $(document).ready(function() {
       });
 
       $('.container').on('click', '.compare-image.image-two', function() {
+        $('.loading-modal').fadeIn();
         var item_1 = $(this).data("id");
         var item_2 = $(".compare-image.image-one").data("id");
         var extension = $('#images-to-compare').data("url-extension");
@@ -93,6 +99,9 @@ $(document).ready(function() {
                 $("#images-to-compare").append(html_item_2);
                 console.log("success");
               },
+              complete: function() {
+                $('.loading-modal').fadeOut();
+              }
             });
           }
         });

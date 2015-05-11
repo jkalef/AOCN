@@ -7,4 +7,21 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def self.gender_select
+    ["male", "female"]
+  end
+
+  def self.location_range
+    ["Vancouver", "Toronto", "Montreal", "Halifax"]
+  end
+
+  # def self.find_specific_users
+  #   specific_users = []
+  #   profiles = Profile.where(sex: "male")
+  #   profiles.each do |profile|
+  #     specific_users << profile.user.id
+  #   end
+  #   specific_users
+  # end
+
 end
