@@ -55,15 +55,21 @@ class Item < ActiveRecord::Base
   # SPECIFIC SEARCH FILTER METHOD ----------------
   #-----------------------------------------------
 
-  def self.crazy_query(gender, age_1, age_2, location, win_or_lose, record_count)
+  def self.crazy_query(gender = nil, age_1 = nil, age_2 = nil, location = nil, win_or_lose, record_count)
     myObject = []
     Item.all.each do |item|
       wins = 0
       loses = 0
+
       specific_users = []
-      profiles = Profile.where("sex = ? and age > ? and age < ? and location = ?", 
-                                      "#{gender}", "#{age_1}", "#{age_2}", "#{location}")
-        profiles.each do |profile|
+      profiles = Profile.all
+      profiles = profiles.where("sex = ?", "#{gender}") if gender.present?
+      profiles = profiles.where("age > ?", "#{age_1}") if age_1.present?
+      profiles = profiles.where("age < ?", "#{age_2}") if age_2.present?
+      profiles = profiles.where("location = ?", "#{location}") if location.present?
+      # profiles = Profile.where("sex = ? and age > ? and age < ? and location = ?", 
+      #                                 "#{gender}", "#{age_1}", "#{age_2}", "#{location}")
+      profiles.each do |profile|
         specific_users << profile.user.id
       end
       specific_users
@@ -82,6 +88,7 @@ class Item < ActiveRecord::Base
       h["lose_percentage"] = loses.to_f / total.to_f
       h["wins"] = wins
       h["loses"] = loses
+      h["picture"] = item.picture
 
       if h["total_compares"] != 0 
         myObject << h
@@ -96,7 +103,7 @@ class Item < ActiveRecord::Base
     end
 
     #convert the record count to an integer so it can be used in the range
-    n = record_count.to_i
+    n = record_count.to_i - 1
     if sortedObject.length <= 5
       return sortedObject
     else

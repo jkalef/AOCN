@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+    pickMeDivs = function() {
+      $('.no-bounds-one').on('mouseenter', '.image-one', function() {
+        $('.test-div-one').fadeIn();
+      });
+      
+      $('.no-bounds-one').on('mouseleave', '.image-one', function() {
+        $('.test-div-one').fadeOut();
+      });
+
+      $('.no-bounds-two').on('mouseenter', '.image-two', function() {
+        $('.test-div-two').fadeIn();
+      });
+      $('.no-bounds-two').on('mouseleave', '.image-two', function() {
+        $('.test-div-two').fadeOut();
+      });      
+    }
 
     $(".play-button").on("click", function(){
       var extension = $(this).data("extension");
@@ -21,6 +37,7 @@ $(document).ready(function() {
           var html_item_2 = Mustache.render(template_2, data.item_2);
           $("#images-to-compare").append(html_item_1); 
           $("#images-to-compare").append(html_item_2);
+          pickMeDivs();
         },
       });
       return false
@@ -57,7 +74,7 @@ $(document).ready(function() {
                 var html_item_2 = Mustache.render(template_2, data.item_2);
                 $("#images-to-compare").append(html_item_1); 
                 $("#images-to-compare").append(html_item_2);
-                console.log("success");
+                pickMeDivs();
               },
               complete: function() {
                 $('.loading-modal').fadeOut();
@@ -97,7 +114,7 @@ $(document).ready(function() {
                 var html_item_2 = Mustache.render(template_2, data.item_2);
                 $("#images-to-compare").append(html_item_1); 
                 $("#images-to-compare").append(html_item_2);
-                console.log("success");
+                pickMeDivs();
               },
               complete: function() {
                 $('.loading-modal').fadeOut();

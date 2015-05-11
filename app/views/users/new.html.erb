@@ -7,6 +7,8 @@
       <%= simple_form_for @user do |f| %>
         <%= f.text_field :email, class: "form-control input-lg", placeholder: "Email" %>
         <br>
+        <%= f.text_field :username, class: "form-control input-lg", placeholder: "Username" %>
+        <br>
         <%= f.password_field :password, class: "form-control input-lg", placeholder: "Password" %>
         <br>
         <%= f.password_field :password, class: "form-control input-lg", placeholder: "Confirm Password" %>

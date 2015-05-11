@@ -67,9 +67,42 @@
 
  .pick-me {
   display: none;
-  width: 400px;
+  width: 100%;
   height: 100px;
   background-color: green;
+ }
+
+
+ .no-bounds-one {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+ }
+
+ .no-bounds-two{
+  margin: 0;
+  padding: 0;
+  text-align: left;
+ }
+
+ .test-div-one {
+  display: none;
+  width: 400px;
+  height: 50px;
+  background-color: #eee;
+  text-align: center;
+ }
+
+ .test-div-two {
+  display: none;
+  width: 400px;
+  height: 50px;
+  background-color: #eee;
+  text-align: center;
+ }
+
+ .pick-me-text {
+  color: gray;
  }
 
  /* Loading Graphic Details */
@@ -137,6 +170,60 @@
     -moz-transform: translateY(-21px);
   }
 }
+
+/* Navbar Styles */
+/* Navigation Bar */
+.navbar {
+  background: #eee;
+  height: 70px;
+  padding-top: 10px;
+}
+
+.navbar.navbar-default {
+  margin-bottom: 0;
+  border-radius: 0;
+  border: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #777;
+}
+
+.link-item {
+  color: #777;
+}
+
+.navbar-default.navbar-nav li {
+  vertical-align: middle;
+}
+
+.brand-image {
+  width: 120px;
+  height: 77px;
+}
+
+.navbar-brand-no-padding {
+  padding: 0px;
+}
+
+.nav.navbar-nav {
+  li {
+      a:focus {
+      background-color: rgba(250, 250, 250, 1);
+      }
+      a:hover {
+        background-color: rgba(250, 250, 250, 1);
+      }
+    }
+  }
+
+.welcome-text {
+  color: white;
+  margin-top: 15px;
+  padding-right: 10px;
+}
+
+
 
 
 

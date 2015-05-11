@@ -50,6 +50,8 @@ gem 'chart-js-rails'
 
 gem 'omniauth-facebook'
 
+gem 'jquery-turbolinks'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

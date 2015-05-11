@@ -1,5 +1,7 @@
 class Admin::StatsController < Admin::BaseController
 
+  layout "/layouts/statistics"
+
   def index
     @locations = Profile.location_range
     @age_range = Profile.age_range

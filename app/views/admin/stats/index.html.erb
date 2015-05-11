@@ -9,17 +9,17 @@
         <div class="filter-form">
           <%= simple_form_for "", method: :post do |f| %>
           <%# change fields to proper sizes for what they are entering %>
-            Age:
-            <%= f.select(:age_1, @age_range, {}, {class: "input-lg"}) %>
-            <%= f.select(:age_2, @age_range, {}, {class: "input-lg"}) %>
+            Age Range:
+            <%= f.select(:age_1, @age_range, {include_blank: true}, {class: "input-lg"}) %>
+            <%= f.select(:age_2, @age_range, {include_blank: true}, {class: "input-lg"}) %>
             <br>
             <br>
-            Gender:
-            <%= f.select(:gender, @sex, {}, {class: "input-lg"}) %>
+            Gender (optional):
+            <%= f.select(:gender, @sex, {include_blank: true}, {class: "input-lg"}) %>
             <br>
             <br>
-            City:
-            <%= f.select(:location, @locations, {}, {class: "input-lg"}) %>
+            City (optional):
+            <%= f.select(:location, @locations, {include_blank: true}, {class: "input-lg"}) %>
             <br>
             <br>
             Number of Records:
