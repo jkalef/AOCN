@@ -57,26 +57,23 @@ class Item < ActiveRecord::Base
 
   def self.crazy_query(gender = nil, age_1 = nil, age_2 = nil, location = nil, win_or_lose, record_count)
     myObject = []
-    Item.all.each do |item|
+
+    profiles = Profile.all
+    profiles = profiles.where("sex = ?", gender) if gender.present?
+    profiles = profiles.where("age > ?", age_1) if age_1.present?
+    profiles = profiles.where("age < ?", age_2) if age_2.present?
+    profiles = profiles.where("location = ?", location) if location.present?
+    user_ids = profiles.pluck(:user_id)
+
+    Item.all.eager_load(:chosen_compares, :unchosen_compares).each do |item|
       wins = 0
       loses = 0
 
-      specific_users = []
-      profiles = Profile.all
-      profiles = profiles.where("sex = ?", "#{gender}") if gender.present?
-      profiles = profiles.where("age > ?", "#{age_1}") if age_1.present?
-      profiles = profiles.where("age < ?", "#{age_2}") if age_2.present?
-      profiles = profiles.where("location = ?", "#{location}") if location.present?
       # profiles = Profile.where("sex = ? and age > ? and age < ? and location = ?", 
       #                                 "#{gender}", "#{age_1}", "#{age_2}", "#{location}")
-      profiles.each do |profile|
-        specific_users << profile.user.id
-      end
-      specific_users
-
-      specific_users.each do |id|
-        wins += item.chosen_compares.where(user_id: id).count
-        loses += item.unchosen_compares.where(user_id: id).count
+      user_ids.each do |user_id|
+        wins += item.chosen_compares.where(user_id: user_id).count
+        loses += item.unchosen_compares.where(user_id: user_id).count
       end
       
       total = wins + loses
