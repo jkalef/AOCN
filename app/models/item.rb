@@ -55,7 +55,7 @@ class Item < ActiveRecord::Base
   # SPECIFIC SEARCH FILTER METHOD ----------------
   #-----------------------------------------------
 
-  def self.crazy_query(gender = nil, age_1 = nil, age_2 = nil, location = nil, win_or_lose, record_count)
+  def self.crazy_query(win_or_lose, record_count, gender = nil, age_1 = nil, age_2 = nil, location = nil)
     myObject = []
 
     profiles = Profile.all
@@ -65,7 +65,7 @@ class Item < ActiveRecord::Base
     profiles = profiles.where("location = ?", location) if location.present?
     user_ids = profiles.pluck(:user_id)
 
-    Item.all.eager_load(:chosen_compares, :unchosen_compares).each do |item|
+    Item.all.each do |item|
       wins = 0
       loses = 0
 

@@ -1,0 +1,16 @@
+<h1>Welcome To Oranges or Chuck Norris!</h1>
+  <p>Please create your account to play:</p>
+  <br>
+  <%= simple_form_for user do |f| %>
+    <%= f.text_field :email, class: "form-control input-lg", placeholder: "Email" %>
+    <br>
+    <%= f.text_field :username, class: "form-control input-lg", placeholder: "Username" %>
+    <br>
+    <%= f.password_field :password, class: "form-control input-lg", placeholder: "Password" %>
+    <br>
+    <%= f.password_field :password_confirmation, class: "form-control input-lg", placeholder: "Confirm Password" %>
+    <br>
+    <%= f.submit "Create Account", class: "btn btn-success btn-centered create-account-button" %>
+  <% end %>
+  <br>
+  <%= link_to "Already made an account?", new_session_path %>

@@ -1,17 +1,14 @@
-<div class="main-wrapper centered">
-  <div class="col-sm-12 col-xs-12 col-md-6 col-md-offset-3">
+  <div class="edit-profile-form">
     <h1>Please Edit Your Profile</h1>
-    <br>
-    <div class="form-group">
-      <%= simple_form_for "", method: :post do |f| %>
+      <%= simple_form_for profile do |f| %>
         <%# change fields to proper sizes for what they are entering %>
-        <%= f.select(:age, @age_range, {}, {class: "input-lg"}) %>
+        <%= f.select(:age, age_range, {}, {class: "input-lg"}) %>
         <br>
         <br>
-        <%= f.select(:sex, @sex, {}, {class: "input-lg"}) %>
+        <%= f.select(:sex, gender_select, {}, {class: "input-lg"}) %>
         <br>
         <br>
-        <%= f.select(:location, @locations, {}, {class: "input-lg"}) %>
+        <%= f.select(:location, location_select, {}, {class: "input-lg"}) %>
         <br>
         <br>
         <%# add in dating enabled function and username %>
@@ -19,6 +16,5 @@
       <% end %>
       <br>
       <%= link_to "I don't care about my profile...I just want to play!!", play_path %>
-    </div>
   </div>
-</div>
+

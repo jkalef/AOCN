@@ -29,10 +29,9 @@ class Admin::StatsController < Admin::BaseController
     win_or_lose = params[:win_or_lose]
     record_count = params[:record_count]
 
-    filtered_query = Item.crazy_query(gender, age_1, age_2, 
-                              location, win_or_lose, record_count)
+    filtered_query = Item.crazy_query(win_or_lose, record_count, 
+                                        gender, age_1, age_2, location)
     render json: { filtered_query: filtered_query }
-  
     #I should have an option for how many records to select, 
     #and if you want to see the HIGHEST x records for a specific
     #category, or the LOWEST x records for a specific category
