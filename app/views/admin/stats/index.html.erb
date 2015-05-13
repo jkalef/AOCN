@@ -33,7 +33,34 @@
           <%= f.submit "Filter Data", class: "btn btn-success btn-lg third-filter-button" %>
         <% end %>
         </div>
-  </div>
+
+
+  <h3>Second Options</h3>
+
+        <div class="filter-form">
+          <%= simple_form_for "", method: :post do |f| %>
+          <%# change fields to proper sizes for what they are entering %>
+            Tag 1:
+            <%= f.select(:cat_1, @categories, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+            Tag 2:
+            <%= f.select(:cat_2, @categories, {}, {class: "input-lg"}) %>
+            <br>
+            <br>
+          <%= f.submit "Filter Data", class: "btn btn-danger btn-lg fourth-filter-button" %>
+        <% end %>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
   <div class="col-md-9 centered">
     <h1>Viewing Statistics</h1>
     <div class="bar-chart-container">

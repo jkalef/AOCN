@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   #--For Admins and Viewing Stats ------------------
   namespace :admin do
     resources :stats, only: [:index, :show, :create]
+    post "/category_compare" => "stats#category_compare"
     resources :categories
     resources :items, only: [:destroy]
   end

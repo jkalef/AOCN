@@ -12,4 +12,11 @@ class Category < ActiveRecord::Base
 
   validates :items, presence: true
 
+  def self.category_names
+    names = []
+    Category.all.each do |category|
+      names << category.name
+    end
+    names
+  end
 end

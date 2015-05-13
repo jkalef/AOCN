@@ -1,4 +1,4 @@
-<h1>Welcome To Oranges or Chuck Norris!</h1>
+<h1 class="welcome-text">Welcome To Apples or Chuck Norris!</h1>
   <p>Please create your account to play:</p>
   <br>
   <%= simple_form_for user do |f| %>
@@ -10,7 +10,7 @@
     <br>
     <%= f.password_field :password_confirmation, class: "form-control input-lg", placeholder: "Confirm Password" %>
     <br>
-    <%= f.submit "Create Account", class: "btn btn-success btn-centered create-account-button" %>
+    <%= f.submit "Create Account", class: "btn btn-success btn-centered create-account-button btn-lg" %>
   <% end %>
   <br>
   <%= link_to "Already made an account?", new_session_path %>

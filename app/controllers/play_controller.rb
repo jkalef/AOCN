@@ -16,7 +16,10 @@ class PlayController < ApplicationController
     chosen_item = Item.find_by_id(chosen_item_id) 
     unchosen_item = Item.find_by_id(unchosen_item_id)
   
-    comparison = current_user.compares.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
+    comparison = current_user.compares.new(chosen_item_id: chosen_item.id, 
+                                           unchosen_item_id: unchosen_item.id,
+                                           chosen_item_category_id: chosen_item.category_id,
+                                           unchosen_item_category_id: unchosen_item.category_id)
     comparison.save
   
     #same category gameplay
@@ -26,7 +29,7 @@ class PlayController < ApplicationController
     #chuck norris
     elsif game_mode.include? "chuck"
       category_1 = Category.find(8)
-      category_2 = Category.all.sample
+      category_2 = Category.find(1)
     #random game play
     elsif game_mode.include? "random"
       category_1 = Category.all.sample
@@ -52,7 +55,7 @@ class PlayController < ApplicationController
     elsif params[:chuck_norris]
       #chuck norris's category is id 8
       category_1 = Category.find(8)
-      category_2 = Category.all.sample
+      category_2 = Category.find(1)
     end
 
     @item_1 = category_1.items.sample
