@@ -3,6 +3,7 @@ $(document).ready(function() {
     $(".play-button").on("click", function(e){
       var extension = $(this).data("extension");
       $('.chuck-norris').css('background-image', 'none');
+      $('body').css('background-color', '#f1f1f1');
       $('#images-to-compare').data("url-extension", extension);
       $.ajax({
         method: "get",
@@ -27,7 +28,6 @@ $(document).ready(function() {
     });
 
       $('.container').on('click', '.compare-image.image-one', function() {
-        $('.loading-modal').fadeIn();
         console.log(this);
         var item_1 = $(this).data("id");
         var item_2 = $(".compare-image.image-two").data("id");

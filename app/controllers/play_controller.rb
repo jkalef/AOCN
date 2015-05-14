@@ -55,7 +55,7 @@ class PlayController < ApplicationController
     elsif params[:chuck_norris]
       #chuck norris's category is id 8
       category_1 = Category.find(8)
-      category_2 = Category.find(1)
+      category_2 = Category.all.sample
     end
 
     @item_1 = category_1.items.sample
