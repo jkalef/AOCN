@@ -297,7 +297,7 @@ ul {
 }
 
 .chuck-norris-modal {
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnf_ont3WGzgSPhO_U-zULj98xTPc17d93UivkKL2ZG-fWGnwr");
+  background-image: url("http://www.talpigno.hu/wp-content/uploads/2015/03/13.gif");
   background-size: cover;
   min-height: 400px;
 }
@@ -327,10 +327,15 @@ ul {
   font-size: 18px;
 }
 
+.dropdown-menu.play-button {
+  color: red;
+}
+
 .dropdown-menu {
   position: absolute;
   /* top: 100%; */
   /* left: 0; */
+  right: 0;
   z-index: 1000;
   display: none;
   min-width: 200px;
@@ -346,6 +351,11 @@ ul {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
+}
+
+ul.dropdown-menu.scrollable-menu {
+  width: 300px;
+  margin: 0 auto;
 }
 
 
