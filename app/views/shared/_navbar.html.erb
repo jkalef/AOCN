@@ -11,8 +11,6 @@
             <li><%= link_to "PLAY NOW", play_path %></li>
               <% if current_user.is_admin? %>
                 <li><%= link_to "Stats", admin_stats_path %></li>
-                <li><%= link_to "Create New Category", new_admin_category_path %></li>
-                <li><%= link_to "Add Items To A Category", admin_categories_path %></li>
               <% end %>
             <% end %>
             <%# modal pop-up for contact us %>
