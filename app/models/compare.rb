@@ -10,16 +10,6 @@ class Compare < ActiveRecord::Base
     Compare.group(:chosen_item_id).count
   end
 
-  private
-
-  def update_items
-    chosen_item.calculate_win_percentage
-    unchosen_item.calculate_win_percentage
-
-    chosen_item.calculate_lose_percentage
-    unchosen_item.calculate_lose_percentage
-  end
-
   def self.compare_query(cat_1, cat_2)
     #find all of the comparisons where these 2 categories are
     #put up against each other (will work with tags as well if we implement
@@ -54,4 +44,17 @@ class Compare < ActiveRecord::Base
     }
 
   end
+
+
+  private
+
+  def update_items
+    chosen_item.calculate_win_percentage
+    unchosen_item.calculate_win_percentage
+
+    chosen_item.calculate_lose_percentage
+    unchosen_item.calculate_lose_percentage
+  end
+
+  
 end

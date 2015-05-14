@@ -1,14 +1,21 @@
 <div class="container centered">
   <div class="col-md-3">
-        <h2>Filter Statistics</h2>
-        <button class="btn btn-primary btn-lg" id="filter-button" data-id="bottom_dogs">Lowest Scoring Items Overall</button>
+        <h1>Statistic Filters</h1>
         <br>
         <hr>
-        <h3>Filter Options</h3>
-
-        <div class="filter-form">
+        <h4>Main Stat Filters:</h4>
+        <button class="btn btn-danger" id="filter-button" data-id="bottom_dogs">Lowest Scoring Items Overall</button>
+        <br>
+        <%= link_to "Highest Scoring Items Overall", admin_stats_path, class: "btn btn-success" %>
+        <br>
+        <hr>
+        <h4>Other Filter Options:</h4>
+        <div class="stats-title">
+          <div class="filter-options-title">
+            <p>Win/Lose Filtering</p>
+          </div>
+             <div class="filter-form" id="win-lose-form">
           <%= simple_form_for "", method: :post do |f| %>
-          <%# change fields to proper sizes for what they are entering %>
             Age Range:
             <%= f.select(:age_1, @age_range, {include_blank: true}, {class: "input-lg"}) %>
             <%= f.select(:age_2, @age_range, {include_blank: true}, {class: "input-lg"}) %>
@@ -30,13 +37,15 @@
             <%= f.select(:win_or_lose, @win_or_lose_records, {}, {class: "input-lg"}) %>
             <br>
             <br>
-          <%= f.submit "Filter Data", class: "btn btn-success btn-lg third-filter-button" %>
+          <%= f.submit "Filter Data", class: "btn btn-primary third-filter-button" %>
         <% end %>
         </div>
+        </div>
 
-
-  <h3>Second Options</h3>
-
+  <div class="stats-title">
+    <div class="filter-options-title">
+      <p>Tag Filtering</p>
+    </div>
         <div class="filter-form">
           <%= simple_form_for "", method: :post do |f| %>
           <%# change fields to proper sizes for what they are entering %>
@@ -48,30 +57,25 @@
             <%= f.select(:cat_2, @categories, {}, {class: "input-lg"}) %>
             <br>
             <br>
-          <%= f.submit "Filter Data", class: "btn btn-danger btn-lg fourth-filter-button" %>
+          <%= f.submit "Filter Data", class: "btn btn-primary fourth-filter-button" %>
         <% end %>
         </div>
     </div>
-
-
-
-
-
-
-
-
+</div>
 
   <div class="col-md-9 centered">
     <h1>Viewing Statistics</h1>
-    <div class="bar-chart-container">
-      <canvas id="barChart" width="800" height="300"></canvas>
-    </div>
-    <br>
     <br>
     <br>
     <div class="pie-chart-container">
-      <canvas id="pieChart" width="500" height="500"></canvas>
+      <canvas id="pieChart" width="700" height="700"></canvas>
     </div>
+    <br>
+    <br>
+    <div class="bar-chart-container">
+      <canvas id="barChart" width="800" height="600"></canvas>
+    </div>
+    
   </div>
 </div>
 

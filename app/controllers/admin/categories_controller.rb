@@ -12,7 +12,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     @category.save
-    render nothing: true
+    redirect_to admin_categories_path
   end
 
   def edit
@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::BaseController
   def update
     @category = Category.find(params[:id])
     @category.update(category_params)
-    render nothing: true
+    redirect_to admin_categories_path, notice: "category updated!"
   end
 
 

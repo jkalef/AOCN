@@ -44,17 +44,16 @@ class Item < ActiveRecord::Base
   end
 
   def self.top_10_selected_overall
-    order(win_percentage: "DESC").limit(5)
+    order(win_percentage: "DESC").limit(10)
   end
 
   def self.bottom_10_selected_overall
-    order(lose_percentage: "DESC").limit(5)
+    order(lose_percentage: "DESC").limit(10)
   end
 
   #-----------------------------------------------
   # SPECIFIC SEARCH FILTER METHOD ----------------
   #-----------------------------------------------
-
 
   def self.crazy_query(win_or_lose, record_count, gender = nil, age_1 = nil, age_2 = nil, location = nil)
     myObject = []

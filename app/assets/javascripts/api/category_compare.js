@@ -37,7 +37,7 @@ $(document).ready(function() {
         },
         success: function(response) {
           $('#barChart').remove();
-          $('.bar-chart-container').append('<canvas id="barChart" width="800" height="300"></canvas>');
+          $('.bar-chart-container').append('<canvas id="barChart" width="800" height="600"></canvas>');
           var barChart = document.getElementById('barChart').getContext('2d');
           var objectToUse = response.query;
           var data = {};

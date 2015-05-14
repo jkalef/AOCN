@@ -4,7 +4,6 @@
         <div class="form-group sign-up-form">
     <h1>Please Edit Your Profile</h1>
     <br>
-    <div class="form-group">
       <%= simple_form_for @profile do |f| %>
         <%# change fields to proper sizes for what they are entering %>
         <%= f.select(:age, @age_range, {}, {class: "input-lg"}) %>

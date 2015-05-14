@@ -176,9 +176,9 @@
 /* Navbar Styles */
 /* Navigation Bar */
 .navbar {
-  background: rgba(250,250,250,0.7);
-  height: 70px;
-  padding-top: 10px;
+  background: #0c65a5;
+  height: 50px;
+  padding-top: 0px;
   width: 100%;
   left: 0;
 }
@@ -190,11 +190,11 @@
 }
 
 .navbar-default .navbar-nav>li>a {
-  color: #777;
+  color: #fff;
 }
 
 .link-item {
-  color: #777;
+  color: #fff;
 }
 
 .navbar-default.navbar-nav li {
@@ -212,9 +212,9 @@
 
 .nav.navbar-nav {
   li {
-      a:focus {
+     /* a:focus {
       background-color: rgba(250, 250, 250, 1);
-      }
+      }*/
       a:hover {
         background-color: rgba(250, 250, 250, 1);
       }
@@ -234,16 +234,6 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-/*.chuck-norris-two {
-  width: 100%;
-  height: 800px;
-  background-image: url("http://www.geekandjock.com/wp-content/uploads/2012/06/chuck-norris-testimonial-and-thumbs-up.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-*/
-
 
 .sign-up-form {
   background-color: rgba(250,250,250,0.8);
@@ -309,6 +299,52 @@ ul {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnf_ont3WGzgSPhO_U-zULj98xTPc17d93UivkKL2ZG-fWGnwr");
   background-size: cover;
   min-height: 400px;
+}
+
+.btn {
+  padding: 15px 35px;
+  border-radius: 0;
+  margin-bottom: 10px;
+}
+
+.filter-form {
+  display: none;
+}
+
+.filter-options-title {
+  background-color: rgba(200,200,200,1);
+}
+
+.filter-options-title:hover {
+  background-color: rgba(150,150,150,1);
+}
+
+.filter-options-title p {
+  color: #fff;
+  padding-top: 15px;
+  padding-bottom: 20px; 
+  font-size: 18px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  /* top: 100%; */
+  /* left: 0; */
+  z-index: 1000;
+  display: none;
+  min-width: 200px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 21px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
 }
 
 

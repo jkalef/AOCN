@@ -7,6 +7,14 @@ $(document).ready(function() {
     return "rgb(" + r() + "," + r() + "," + r() + ")";
   }
 
+  $('.stats-title').on('click', function() {
+    $(this).children('.filter-form').slideToggle();
+  });
+
+  $('.filter-form').on('click', function(event) {
+    event.stopPropagation();
+  })
+
   // -------------------------------------------------------------------------
   // -------------- INITIAL BAR GRAPH ----------------------------------------
   // -------------------------------------------------------------------------
@@ -20,6 +28,7 @@ $(document).ready(function() {
       console.log("Sorry, something went wrong");
     },
     success: function(response) {
+      console.log(response)
       var objectToUse = response.top_dogs
       var updateLabels = [];
       var updateData = [];
@@ -32,9 +41,9 @@ $(document).ready(function() {
         datasets: [
           {
             label: "Top Winners Overall",
-            fillColor: "rgba(220,220,220,0.5)",
+            fillColor: get_random_color(),
             strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
+            highlightFill: get_random_color(),
             highlightStroke: "rgba(220,220,220,1)",
             data: updateData
           }
@@ -83,7 +92,7 @@ $(document).ready(function() {
   // -------------------------------------------------------------------------
   $('#filter-button').on('click', function() {
     $('#barChart').remove();
-    $('.bar-chart-container').append('<canvas id="barChart" width="800" height="300"></canvas>');
+    $('.bar-chart-container').append('<canvas id="barChart" width="800" height="600"></canvas>');
     var barChart = document.getElementById('barChart').getContext('2d');
     
     $.ajax({
@@ -115,9 +124,9 @@ $(document).ready(function() {
           datasets: [
             {
               label: "Top Winners Overall",
-              fillColor: "rgba(220,220,220,0.5)",
+              fillColor: get_random_color(),
               strokeColor: "rgba(220,220,220,0.8)",
-              highlightFill: "rgba(220,220,220,0.75)",
+              highlightFill: get_random_color(),
               highlightStroke: "rgba(220,220,220,1)",
               data: updateData
             }
@@ -225,7 +234,7 @@ $(document).ready(function() {
 
   $('#filter-button').on('click', function() {
     $('#pieChart').remove();
-    $('.pie-chart-container').append('<canvas id="pieChart" width="500" height="500"></canvas>');
+    $('.pie-chart-container').append('<canvas id="pieChart" width="700" height="700"></canvas>');
     var pieChart = document.getElementById('pieChart').getContext('2d');
     $.ajax({
       method: "get",
@@ -330,7 +339,7 @@ var url = "http://localhost:3000/admin/stats";
         },
         success: function(response) {
           $('#barChart').remove();
-          $('.bar-chart-container').append('<canvas id="barChart" width="800" height="300"></canvas>');
+          $('.bar-chart-container').append('<canvas id="barChart" width="800" height="600"></canvas>');
           var barChart = document.getElementById('barChart').getContext('2d');
           var objectToUse = response.filtered_query;
           var updateLabels = [];
@@ -349,9 +358,9 @@ var url = "http://localhost:3000/admin/stats";
           datasets: [
               {
                 label: "Top Winners Overall",
-                fillColor: "rgba(220,220,220,0.5)",
+                fillColor: get_random_color(),
                 strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "rgba(220,220,220,0.75)",
+                highlightFill: get_random_color(),
                 highlightStroke: "rgba(220,220,220,1)",
                 data: updateData
               }
