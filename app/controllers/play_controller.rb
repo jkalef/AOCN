@@ -39,6 +39,13 @@ class PlayController < ApplicationController
     @item_1 = category_1.items.sample
     @item_2 = category_2.items.sample
 
+    # if @item_1.id = @item_2.id
+    #   while @item_1.id == @item_2.id
+    #     @item_2 = category_2.items.sample
+    #   end 
+    #   @item_2
+    # end
+
     render json: { item_1: @item_1, item_2: @item_2 }
   end
 

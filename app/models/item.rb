@@ -44,11 +44,11 @@ class Item < ActiveRecord::Base
   end
 
   def self.top_10_selected_overall
-    order(win_percentage: "DESC").limit(10)
+    order(win_percentage: "DESC").limit(7)
   end
 
   def self.bottom_10_selected_overall
-    order(lose_percentage: "DESC").limit(10)
+    order(lose_percentage: "DESC").limit(7)
   end
 
   #-----------------------------------------------
