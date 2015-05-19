@@ -22,7 +22,7 @@ $(document).ready(function() {
 
   $.ajax({
     method: "get",
-    url: "http://localhost:3000/admin/stats/show",
+    url: "/admin/stats/show",
     dataType: "json",
     error: function() {
       console.log("Sorry, something went wrong");
@@ -97,7 +97,7 @@ $(document).ready(function() {
     
     $.ajax({
       method: "get",
-      url: "http://localhost:3000/admin/stats/show",
+      url: "/admin/stats/show",
       dataType: "json",
       error: function() {
         console.log("Sorry, something went wrong");
@@ -179,7 +179,7 @@ $(document).ready(function() {
 
   $.ajax({
     method: "get",
-    url: "http://localhost:3000/admin/stats/show",
+    url: "/admin/stats/show",
     dataType: "json",
     error: function() {
       console.log("Sorry, something went wrong");
@@ -238,7 +238,7 @@ $(document).ready(function() {
     var pieChart = document.getElementById('pieChart').getContext('2d');
     $.ajax({
       method: "get",
-      url: "http://localhost:3000/admin/stats/show",
+      url: "/admin/stats/show",
       dataType: "json",
       error: function() {
         console.log("Sorry, something went wrong");
@@ -296,7 +296,7 @@ $(document).ready(function() {
     });
   });
 
-var url = "http://localhost:3000/admin/stats";
+var url = "/admin/stats";
     var get_random_color = function() {
       var r = function() {
         return Math.floor(Math.random()*256)

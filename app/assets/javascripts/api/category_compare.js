@@ -14,7 +14,7 @@ $(document).ready(function() {
     return "rgb(" + r() + "," + r() + "," + r() + ")";
   }
 
-  var urlToUse = "http://localhost:3000/admin/category_compare"
+  var urlToUse = "/admin/category_compare"
   
 
    //------------------------------------------------

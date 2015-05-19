@@ -7,7 +7,7 @@ $(document).ready(function() {
       $('#images-to-compare').data("url-extension", extension);
       $.ajax({
         method: "get",
-        url: "http://localhost:3000/play/show?" + extension,
+        url: "/play/show?" + extension,
         dataType: "json",
         error: function() {
           console.log("Sorry...something went wrong...");
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
           $.ajax({
             method: "post",
-            url: "http://localhost:3000/play/show/" + extension + "/" + item_1 + "/" + item_2,
+            url: "/play/show/" + extension + "/" + item_1 + "/" + item_2,
             dataType: "json",
             error: function() {
               console.log("Sorry....something went wrong...");
@@ -49,7 +49,7 @@ $(document).ready(function() {
               $.ajax({
                 method: "get",
                 //how do I reset this get request to get the same extension from before?
-                url: "http://localhost:3000/play/show?" + extension,
+                url: "/play/show?" + extension,
                 dataType: "json",
                 error: function() {
                   console.log("Sorry...something went wrong...");
@@ -90,7 +90,7 @@ $(document).ready(function() {
 
           $.ajax({
             method: "post",
-            url: "http://localhost:3000/play/show/" + extension + "/" + item_1 + "/" + item_2,
+            url: "/play/show/" + extension + "/" + item_1 + "/" + item_2,
             dataType: "json",
             error: function() {
               console.log("Sorry....something went wrong...");
@@ -98,7 +98,7 @@ $(document).ready(function() {
             success: function() {
               $.ajax({
                 method: "get",
-                url: "http://localhost:3000/play/show?" + extension,
+                url: "/play/show?" + extension,
                 dataType: "json",
                 error: function() {
                   console.log("Sorry...something went wrong...");
