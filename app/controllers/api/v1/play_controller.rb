@@ -38,7 +38,7 @@ class Api::V1::PlayController < Api::V1::BaseController
     end
 
     @item_1 = category_1.items.sample
-    @item_2 = category_2.items.sample
+    @item_2 = category_2.items.where("id != ?", @item_1.id).sample
 
     render json: { item_1: @item_1, item_2: @item_2 }
   end
@@ -59,7 +59,7 @@ class Api::V1::PlayController < Api::V1::BaseController
     end
 
     @item_1 = category_1.items.sample
-    @item_2 = category_2.items.sample
+    @item_2 = category_2.items.where("id != ?", @item_1.id).sample
 
     render json: { item_1: @item_1, item_2: @item_2 }
     # Item.where(category_id: 8).order("RANDOM()").first

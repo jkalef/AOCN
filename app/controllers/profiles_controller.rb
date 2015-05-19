@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find params[:id]
     if @profile.update(profile_params)
-      redirect_to play_path, notice: "Have fun!!!"
+      redirect_to play_path
     else
       render :edit
       flash[:alert] = "Something went wrong. Please Try Again"
