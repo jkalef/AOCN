@@ -12,7 +12,7 @@ class Item < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :users_who_liked, through: :likes, source: :user
 
-  validates :picture, uniqueness: true
+  #validates :picture, uniqueness: true
   #validates :title, presence: true
 
   def calculate_win_percentage

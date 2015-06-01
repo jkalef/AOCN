@@ -35,7 +35,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def item_attributes_params
-    [:title, :picture, :_destroy]
+    [:id, :title, :picture, :_destroy]
   end
 
 end
