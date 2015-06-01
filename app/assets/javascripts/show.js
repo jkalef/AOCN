@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+    //use this to determine if an image is chuck norris or not
+    var chuckNorris = "Chuck Norris";
+
     $(".play-button").on("click", function(e){
       var extension = $(this).data("extension");
       $('.chuck-norris').css('background-image', 'none');
@@ -33,11 +36,10 @@ $(document).ready(function() {
         var item_2 = $(".compare-image.image-two").data("id");
         var extension = $('#images-to-compare').data("url-extension");
 
-        if ($(this).data("category") != 8 && ($(".compare-image.image-two").data("category")) == 8) {
+        if (($(this).attr("alt").includes(chuckNorris) == false) && ($(".compare-image.image-two").attr("alt").includes(chuckNorris) == true )) {
           $('#myModal').modal('show');
         } else {
           $('.loading-modal').fadeIn();
-
           $.ajax({
             method: "post",
             url: "/play/show/" + extension + "/" + item_1 + "/" + item_2,
@@ -83,11 +85,10 @@ $(document).ready(function() {
         console.log($(this).data("category"))
         console.log($(".compare-image.image-one").data("category"))
 
-        if ($(this).data("category") != 8 && ($(".compare-image.image-one").data("category")) == 8) {
+        if (($(this).attr("alt").includes(chuckNorris) == false) && ($(".compare-image.image-one").attr("alt").includes(chuckNorris) == true )) {
           $('#myModal').modal('show');
         } else {
           $('.loading-modal').fadeIn();
-
           $.ajax({
             method: "post",
             url: "/play/show/" + extension + "/" + item_1 + "/" + item_2,
