@@ -29,7 +29,7 @@ class PlayController < ApplicationController
     #chuck norris
     elsif game_mode.include? "chuck"
       category_1 = Category.find(8)
-      category_2 = Category.find(1)
+      category_2 = Category.all.sample
     #random game play
     elsif game_mode.include? "random"
       category_1 = Category.all.sample
