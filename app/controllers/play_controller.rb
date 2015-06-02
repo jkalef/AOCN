@@ -28,7 +28,7 @@ class PlayController < ApplicationController
       category_2 = unchosen_item.category
     #chuck norris
     elsif game_mode.include? "chuck"
-      category_1 = Category.find(8)
+      category_1 = Category.where("name = ?", "Chuck Norris")[0]
       category_2 = Category.all.sample
     #random game play
     elsif game_mode.include? "random"
@@ -53,8 +53,7 @@ class PlayController < ApplicationController
       category_1 = Category.all.sample
       category_2 = Category.all.sample
     elsif params[:chuck_norris]
-      #chuck norris's category is id 8
-      category_1 = Category.find(8)
+      category_1 = Category.where("name = ?", "Chuck Norris")[0]
       category_2 = Category.all.sample
     end
 
