@@ -1,7 +1,7 @@
 class PlayController < ApplicationController
 
   def index
-    @categories = Category.all
+    @categories = Category.where("name != ?", "Chuck Norris")
   end
 
   def show
