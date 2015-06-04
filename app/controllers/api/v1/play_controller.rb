@@ -5,7 +5,7 @@ class Api::V1::PlayController < Api::V1::BaseController
   end
 
   def get_categories
-    @categories = Category.all
+    @categories = Category.where("name != ?", "Chuck Norris")
     render json: {categories: @categories}
   end
   
@@ -17,9 +17,9 @@ class Api::V1::PlayController < Api::V1::BaseController
     chosen_item = Item.find_by_id(chosen_item_id) 
     unchosen_item = Item.find_by_id(unchosen_item_id)
 
-
-    current_user = User.where(api_key: params[:api_key])[0]
-  
+    # current_user = User.where(api_key: params[:api_key])[0]
+    current_user = User.find 1
+    
     comparison = current_user.compares.new(chosen_item_id: chosen_item.id, unchosen_item_id: unchosen_item.id)
     comparison.save
   
@@ -28,9 +28,9 @@ class Api::V1::PlayController < Api::V1::BaseController
       category_1 = chosen_item.category
       category_2 = unchosen_item.category
     #chuck norris
-    elsif game_mode.include? "chuck"
-      category_1 = Category.find(8)
-      category_2 = Category.all.sample
+    # elsif game_mode.include? "chuck"
+    #   category_1 = Category.find(8)
+    #   category_2 = Category.all.sample
     #random game play
     elsif game_mode.include? "random"
       category_1 = Category.all.sample
@@ -52,16 +52,16 @@ class Api::V1::PlayController < Api::V1::BaseController
     elsif params[:random]
       category_1 = Category.all.sample
       category_2 = Category.all.sample
-    elsif params[:chuck_norris]
-      #chuck norris's category is id 8
-      category_1 = Category.find(8)
-      category_2 = Category.all.sample
+    # elsif params[:chuck_norris]
+    #   category_1 = Category.find(8)
+    #   category_2 = Category.all.sample
     end
 
     @item_1 = category_1.items.sample
     @item_2 = category_2.items.where("id != ?", @item_1.id).sample
 
     render json: { item_1: @item_1, item_2: @item_2 }
+    # update queries to this for faster queries
     # Item.where(category_id: 8).order("RANDOM()").first
   end
 
