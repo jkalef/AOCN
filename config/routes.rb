@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
       get "/play/categories"                                 => "play#get_categories"
       get "/play/show"                                       => "play#show"  
-      post "/play/show/:extension/:item_1/:item_2/:api_key"  => "play#create"
+      post "/play/show/:extension/:item_1/:item_2"           => "play#create"
     end
   end
 
